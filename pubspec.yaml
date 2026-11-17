@@ -1,0 +1,122 @@
+name: chat
+description: "SecureChat Guard messaging and incident reporting application."
+
+
+
+publish_to: "none"
+
+
+
+version: 1.0.0+1
+
+
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+
+  # Material UI used by all screens.
+  material_ui: ^1.0.0
+
+
+
+  # Backend HTTP requests.
+  http: ^1.2.2
+
+
+
+  # Local access-token and conversation-key storage.
+  flutter_secure_storage: ^10.0.0
+
+
+
+  # Client-side message encryption.
+  cryptography: ^2.9.0
+
+
+
+  # Real-time WebSocket connection.
+  web_socket_channel: ^3.0.3
+
+
+
+  # Unique client message identifiers.
+  uuid: ^4.6.0
+
+
+
+  # Photo and file selection.
+  file_picker: ^13.3.3
+
+
+
+  # Saving non-photo attachments.
+  file_saver: ^0.7.0
+
+
+
+  # Choosing and uploading profile photos.
+  image_picker: ^1.2.4
+
+
+
+  # Local notification-control settings.
+  shared_preferences: ^2.5.6
+
+
+
+  # Saving received photos directly to the device gallery.
+  gal: ^2.3.0
+
+
+
+  # Temporary file storage before saving a photo to the gallery.
+  path_provider: ^2.1.4
+
+
+
+  # Converts selected profile photos to JPEG before upload.
+  flutter_image_compress: ^2.3.0
+
+
+
+  # Explicit JPEG MIME type for profile-photo uploads.
+  http_parser: ^4.1.2
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+
+  flutter_lints: ^5.0.0
+
+
+
+  # Generates Android and iOS launcher icons.
+  flutter_launcher_icons: ^0.14.4
+
+
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/icon/
+
+
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/app_icon.png"
+  remove_alpha_ios: true
