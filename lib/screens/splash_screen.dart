@@ -13,6 +13,12 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  static const Color _background = Color(0xFF121820);
+  static const Color _surface = Color(0xFF1B242E);
+  static const Color _accent = Color(0xFFFF6B7A);
+  static const Color _accentDark = Color(0xFFE4485C);
+  static const Color _muted = Color(0xFFA9B7C4);
+
   bool _isCheckingSession = true;
 
   @override
@@ -87,159 +93,20 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Color(0xFF0D47A1),
-              Color(0xFF1E88E5),
-              Color(0xFF42A5F5),
-            ],
-          ),
-        ),
-        child: SafeArea(
-          child: Column(
-            children: [
-              const Spacer(),
-              Container(
-                width: 132,
-                height: 132,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.18),
-                      blurRadius: 28,
-                      offset: const Offset(0, 12),
-                    ),
-                  ],
-                ),
-                child: const Icon(
-                  Icons.shield_rounded,
-                  size: 68,
-                  color: Color(0xFF1E88E5),
-                ),
-              ),
-              const SizedBox(height: 28),
-              const Text(
-                'SecureChat',
-                style: TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.white,
-                  letterSpacing: 0.5,
-                ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                'Secure communication\nfor Guards',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                  height: 1.4,
-                  color: Colors.white.withValues(alpha: 0.85),
-                ),
-              ),
-              const SizedBox(height: 36),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _FeatureChip(
-                    icon: Icons.lock_rounded,
-                    label: 'Encrypted',
-                  ),
-                  const SizedBox(width: 10),
-                  _FeatureChip(
-                    icon: Icons.chat_bubble_rounded,
-                    label: 'Secure Chat',
-                  ),
-                  const SizedBox(width: 10),
-                  _FeatureChip(
-                    icon: Icons.shield_outlined,
-                    label: 'Guard Safety',
-                  ),
-                ],
-              ),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 32,
-                ),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: FilledButton(
-                    onPressed: _isCheckingSession ? null : _openRoleScreen,
-                    style: FilledButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: const Color(0xFF0D47A1),
-                      minimumSize: const Size.fromHeight(56),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                    ),
-                    child: _isCheckingSession
-                        ? const SizedBox(
-                            width: 24,
-                            height: 24,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2.5,
-                              color: Color(0xFF0D47A1),
-                            ),
-                          )
-                        : const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Get Started',
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              SizedBox(width: 8),
-                              Icon(Icons.arrow_forward_rounded),
-                            ],
-                          ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 28),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _FeatureChip extends StatelessWidget {
-  const _FeatureChip({
-    required this.icon,
-    required this.label,
-  });
-
-  final IconData icon;
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _featureChip({
+    required IconData icon,
+    required String label,
+  }) {
     return Container(
       padding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 8,
+        horizontal: 13,
+        vertical: 9,
       ),
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.16),
+        color: _surface,
         borderRadius: BorderRadius.circular(30),
         border: Border.all(
-          color: Colors.white.withValues(alpha: 0.25),
+          color: const Color(0xFF2C3945),
         ),
       ),
       child: Row(
@@ -248,9 +115,9 @@ class _FeatureChip extends StatelessWidget {
           Icon(
             icon,
             size: 16,
-            color: Colors.white,
+            color: _accent,
           ),
-          const SizedBox(width: 6),
+          const SizedBox(width: 7),
           Text(
             label,
             style: const TextStyle(
@@ -260,6 +127,220 @@ class _FeatureChip extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: _background,
+      body: Container(
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xFF151C25),
+              Color(0xFF121820),
+              Color(0xFF0E141B),
+            ],
+          ),
+        ),
+        child: SafeArea(
+          child: Stack(
+            children: [
+              Positioned(
+                top: -110,
+                right: -90,
+                child: Container(
+                  width: 280,
+                  height: 280,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: RadialGradient(
+                      colors: [
+                        _accent.withValues(alpha: 0.20),
+                        _accent.withValues(alpha: 0.0),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: -130,
+                left: -100,
+                child: Container(
+                  width: 320,
+                  height: 320,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: RadialGradient(
+                      colors: [
+                        _accentDark.withValues(alpha: 0.14),
+                        _accentDark.withValues(alpha: 0.0),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SafeArea(
+                child: Column(
+                  children: [
+                    const Spacer(),
+                    Container(
+                      width: 138,
+                      height: 138,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color(0xFF243141),
+                            Color(0xFF182230),
+                          ],
+                        ),
+                        border: Border.all(
+                          color: _accent.withValues(alpha: 0.35),
+                          width: 2,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: _accent.withValues(alpha: 0.22),
+                            blurRadius: 38,
+                            offset: const Offset(0, 16),
+                          ),
+                        ],
+                      ),
+                      child: const Icon(
+                        Icons.shield_rounded,
+                        size: 66,
+                        color: _accent,
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    const Text(
+                      'SecureChat',
+                      style: TextStyle(
+                        fontSize: 38,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white,
+                        letterSpacing: -0.5,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      'Secure communication\nfor Guards',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16,
+                        height: 1.5,
+                        color: _muted,
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                    Wrap(
+                      alignment: WrapAlignment.center,
+                      spacing: 9,
+                      runSpacing: 9,
+                      children: [
+                        _featureChip(
+                          icon: Icons.lock_rounded,
+                          label: 'Encrypted',
+                        ),
+                        _featureChip(
+                          icon: Icons.chat_bubble_rounded,
+                          label: 'Secure Chat',
+                        ),
+                        _featureChip(
+                          icon: Icons.shield_outlined,
+                          label: 'Guard Safety',
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 28,
+                      ),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: FilledButton(
+                          onPressed:
+                              _isCheckingSession ? null : _openRoleScreen,
+                          style: FilledButton.styleFrom(
+                            backgroundColor: _accent,
+                            foregroundColor: const Color(0xFF201014),
+                            disabledBackgroundColor:
+                                _accent.withValues(alpha: 0.45),
+                            disabledForegroundColor: const Color(0xFF3A2227),
+                            minimumSize: const Size.fromHeight(58),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            elevation: 0,
+                          ),
+                          child: _isCheckingSession
+                              ? const SizedBox(
+                                  width: 24,
+                                  height: 24,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2.5,
+                                    color: Color(0xFF201014),
+                                  ),
+                                )
+                              : const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Get Started',
+                                      style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w800,
+                                      ),
+                                    ),
+                                    SizedBox(width: 9),
+                                    Icon(
+                                      Icons.arrow_forward_rounded,
+                                      size: 21,
+                                    ),
+                                  ],
+                                ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      _isCheckingSession
+                          ? 'Checking your session…'
+                          : 'Tap Get Started to continue',
+                      style: const TextStyle(
+                        color: _muted,
+                        fontSize: 12,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      width: 132,
+                      child: LinearProgressIndicator(
+                        value: _isCheckingSession ? null : 1,
+                        minHeight: 3,
+                        borderRadius: BorderRadius.circular(10),
+                        backgroundColor: const Color(0xFF26313C),
+                        valueColor: const AlwaysStoppedAnimation<Color>(
+                          _accent,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 28),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
